@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title:  Spring boot项目部署到Linux
 date:   2018-04-23 11:15:10
@@ -54,9 +54,11 @@ source /etc/profile
 ## 2.将Spring boot工程下的Java项目打包成Jar包
 
 使用Maven打包JAR包。
+
 **（1）右上角点击Edit Configurations...**
 
 **（2）点绿色的+号添加Maven设置，输入Name；在command line 输入clean package -DskipTests=true**
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/2018040415362586.png)
 
 （3）发现右上角可选package，运行image
