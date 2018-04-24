@@ -55,12 +55,16 @@ source /etc/profile
 
 使用Maven打包JAR包。
 **（1）右上角点击Edit Configurations...**
+
 **（2）点绿色的+号添加Maven设置，输入Name；在command line 输入clean package -DskipTests=true**
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/2018040415362586.png)
 
 （3）发现右上角可选package，运行image
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/20180404154128279.png)
+
 （4）输出building success表示成功， 在target目录下就可以找到jar包
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/20180404154253628.png)
  
 
