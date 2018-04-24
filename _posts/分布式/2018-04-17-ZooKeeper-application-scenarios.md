@@ -1,9 +1,11 @@
----
+﻿---
 layout: post
-title:  "ZooKeeper应用场景"
+title:  ZooKeeper应用场景
 date:   2018-04-17 18:10:10
 categories: 分布式
-tags: 分布式
+tags: ZooKeeper
+keywords: ZooKeeper
+description: 
 ---
 --------------------------
 ZooKeeper是hadoop衍生出来的子项目，因为之间hadoop生态圈的软件都是以动物的名字命名，比如hadoop(一头玩具小象的名字)、impala(黑斑羚)、shark(鲨鱼)、hive（蜂巢）。Zookeeper就是为了协调这些分布式程序的数据一致性问题，所以该项目起名Zookeeper。
