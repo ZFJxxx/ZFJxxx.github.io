@@ -2,8 +2,8 @@
 layout: post
 title:   深入ArrayList
 date:   2017-06-18 11:15:10
-categories:  基 础
-tags: Java
+categories:  Java
+tags: Java容器
 keywords: Java
 description: 
 ---
