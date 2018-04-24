@@ -1,4 +1,4 @@
-﻿---
+---
 title: Blur
 timezone: UTC
 collections:
@@ -13,11 +13,11 @@ paginate: 10
 markdown: kramdown
 encoding: utf-8
 author:
-  name: 吕立青
-  email: lv460051518@gmail.com
-  link: https://blog.jimmylv.info
+  name: ZFJ
+  email:421444710@qq.com
+  link: https://ZFJxxx.github.io
   weibo: https://weibo.com/liqing215
-  github: https://github.com/JimmyLv
+  github: https://github.com/ZFJxxx
   zhihu: https://www.zhihu.com/people/JimmyLv
   juejin: https://juejin.im/user/5628752900b07a1836200154
   stackoverflow: https://stackoverflow.com/users/5871340/jimmylv
@@ -25,14 +25,14 @@ description: 我想看看这个世界
 url: https://blog.jimmylv.info
 repo: https://github.com/JimmyLv/jimmylv.github.io
 rss: "/pages/atom.xml"
-gavatar: https://o7mw3gkkh.qnssl.com/blog/public/img/gavatar.jpg
+gavatar: http://p7lixluhf.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg
 favicon: https://o7mw3gkkh.qnssl.com/blog/public/img/favicon.ico
 ga:
   id: UA-74789926-1
-  url: https://blog.jimmylv.info
+  url: https://ZFJxxx.github.io
 disqus:
   shortname: gotoshare
-active: 标签
+active: Java
 cates:
 - React
 - 摄影
@@ -50,7 +50,6 @@ gems:
 - jekyll-seo-tag
 - jekyll-mermaid
 exclude:
-- ".idea/"
 - ".github/"
 - ".travis/"
 - node_modules/
