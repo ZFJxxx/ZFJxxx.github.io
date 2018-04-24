@@ -78,7 +78,9 @@ source /etc/profile
 java -jar xxxxxxx.jar(jar包名字)
 ```
 弹出，运行成功！
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/20180404154704605.png)
+
 注意：Jar所使用的Java大版本要和Linux的版本一样，比如都是java 1.8 不然就会报错。
 
 
