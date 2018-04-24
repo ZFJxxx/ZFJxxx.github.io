@@ -1,10 +1,12 @@
-﻿---
+---
 layout: post
 title:  Spring boot项目部署到Linux
 date:   2018-04-23 11:15:10
 categories: 工具
-tags: Linuxkeywords: Linuxd
-escription: ---
+tags: Linux
+keywords: Linux
+description:  
+---
 ----------------------------------
 
 ## 1.在Linux上安装好所需要的环境（比如Java环境、Mysql）
