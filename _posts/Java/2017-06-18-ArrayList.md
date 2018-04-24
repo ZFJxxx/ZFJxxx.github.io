@@ -11,6 +11,7 @@ description:
 ## ArrayList
 ----------
 ArrayList是最常见以及每个Java开发者最熟悉的集合类了，顾名思义，ArrayList就是一个以动态数组形式实现的集合.
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/index.jpg)
 
 ArrayList底层以数组实现，允许重复，默认第一次插入元素时创建数组的大小为10，超出限制时会变成1.5倍的容量，每次扩容都底层采用System.arrayCopy()复制到新的数组，初始化时最好能给出数组大小的预估值。
@@ -36,7 +37,9 @@ public boolean add(E e) {
 }
 ```
 先不去管第2行的ensureCapacity方法，这个方法是扩容用的，底层实际上在调用add方法的时候只是给elementData的某个位置添加了一个数据而已，用一张图表示的话是这样的：
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList1.jpg)
+
 
 多说一句，我这么画图有一定的误导性。elementData中存储的应该是堆内存中元素的引用，也就是其地址值，而不是实际的元素。这么画给人一种感觉就是说elementData数组里面存放的就是实际的元素，这是不太严谨的。不过这么画主要是为了方便起见，只要知道这个问题就好了。
 
