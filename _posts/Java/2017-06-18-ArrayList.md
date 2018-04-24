@@ -84,6 +84,7 @@ public static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]>
        return copy;
 }
 ```
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList2.jpg)
 
 
@@ -122,6 +123,7 @@ public static void main(String[] args) {
 }
 ```
 用图表示是这样的：
+
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList3.jpg)
 
 
