@@ -1,4 +1,4 @@
-﻿---
+---
 title: Blur
 timezone: UTC
 collections:
@@ -13,15 +13,15 @@ paginate: 10
 markdown: kramdown
 encoding: utf-8
 author:
-  name: 吕立青
-  email: lv460051518@gmail.com
+  name: ZFJ
+  email: 421444710@qq.com
   link: https://blog.jimmylv.info
   weibo: https://weibo.com/liqing215
   github: https://github.com/JimmyLv
   zhihu: https://www.zhihu.com/people/JimmyLv
   juejin: https://juejin.im/user/5628752900b07a1836200154
   stackoverflow: https://stackoverflow.com/users/5871340/jimmylv
-description: 想做产品，却误入程序世界爱上设计的摄影师。
+description: 我想看看这个世界
 url: https://blog.jimmylv.info
 repo: https://github.com/JimmyLv/jimmylv.github.io
 rss: "/pages/atom.xml"
