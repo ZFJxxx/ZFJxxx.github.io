@@ -1,5 +1,5 @@
 ---
-title: Blur
+title: 吕立青的博客
 timezone: UTC
 collections:
   posts:
@@ -13,30 +13,31 @@ paginate: 10
 markdown: kramdown
 encoding: utf-8
 author:
-  name: ZFJ
-  email:421444710@qq.com
-  link: https://ZFJxxx.github.io
+  name: 吕立青
+  email: lv460051518@gmail.com
+  link: https://blog.jimmylv.info
   weibo: https://weibo.com/liqing215
-  github: https://github.com/ZFJxxx
+  github: https://github.com/JimmyLv
   zhihu: https://www.zhihu.com/people/JimmyLv
   juejin: https://juejin.im/user/5628752900b07a1836200154
   stackoverflow: https://stackoverflow.com/users/5871340/jimmylv
-description: 我想看看这个世界
+description: 想做产品，却误入程序世界爱上设计的摄影师。
 url: https://blog.jimmylv.info
 repo: https://github.com/JimmyLv/jimmylv.github.io
 rss: "/pages/atom.xml"
-gavatar: http://p7lixluhf.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg
+gavatar: https://o7mw3gkkh.qnssl.com/blog/public/img/gavatar.jpg
 favicon: https://o7mw3gkkh.qnssl.com/blog/public/img/favicon.ico
 ga:
   id: UA-74789926-1
-  url: https://ZFJxxx.github.io
+  url: https://blog.jimmylv.info
 disqus:
   shortname: gotoshare
-active: Java
+active: 前端
 cates:
 - React
 - 摄影
 locals:
+  ideas: 想法
   tags: 标签
   about: 关于
   newest: 最新文章
@@ -50,8 +51,9 @@ gems:
 - jekyll-seo-tag
 - jekyll-mermaid
 exclude:
+- ".idea/"
 - ".github/"
 - ".travis/"
 - node_modules/
 - themes/
-
+- _posts/演讲/assets
