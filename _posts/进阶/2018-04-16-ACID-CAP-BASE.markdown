@@ -2,7 +2,7 @@
 layout: post
 title:  "ACID、CAP、BASE分布式理论"
 date:   2018-04-16 22:21:49
-categories: 分布式
+categories: 进阶
 tags: ZooKeeper
 keywords: ZooKeeper
 description: 
