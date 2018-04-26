@@ -1,4 +1,4 @@
----
+﻿---
 title: Blur
 timezone: UTC
 collections:
@@ -32,7 +32,7 @@ ga:
   url: https://blog.jimmylv.info
 disqus:
   shortname: gotoshare
-active: 前端
+active: tags
 cates:
 - React
 - 摄影
