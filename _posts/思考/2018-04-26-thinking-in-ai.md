@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title:  thinking in AI
+title:  Thinking in AI
 date:   2018-04-26 19:15:10
 categories:  思考
 tags: 思考
