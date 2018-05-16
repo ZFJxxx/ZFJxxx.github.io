@@ -265,13 +265,38 @@ wget -r -A.zip http://www.linuxde.net/
 ## find
 find 和 grep 是 linux中 最 常 用 的 两 个 搜 索 函 数
 凡是搜索文件名，就用find，凡是搜索文件内容，就要grep。
+
+我们使用find来查找想要的文件，但是我们一般查找出来的额并不仅仅是看看而已，还会有进一步的操作，这个时候exec的作用就显现出来了。
 ```
+-exec {} \;
+```
+一对{}，一个空格和一个\，最后是一个分号。
+
+{} 花括号代表前面find查找出来的文件名。
+```
+find 命令匹配到了当前目录下的所有普通文件，并在 -exec 选项中使用 ls -l 命令将它们列出。
+# find ./ -type f -exec ls -l {} \; 
+
 查找前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件：
 # find . -type f -perm 644 -exec ls -l {} \;
 
 为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径：
 # find / -type f -size 0 -exec ls -l {} \;
+
+在目录中查找更改时间在14日以前的文件并删除它们
+# find ./ -mtime +14 -type f -exec rm {} \; 
+
+查找文件并移动到指定目录， （ .. 是路径名）
+# find  ./  -name  "*.log"  -exec  mv {} .. \;
+
+用exec选项执行 cp 命令，（test3 是个目录，不然cp不进去。 ）
+# find  ./  -name  "*.log"  -exec  cp {}  test3  \;　　　
+
+-exec 中使用 grep 命令
+# find /etc/  -name "passwd"  -exec  grep  "root" {} \;
 ```
+
+
 ## scp
 
 scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令。
