@@ -65,7 +65,7 @@ Java虚拟机栈（Java Virtual Machine Stacks）也是线程私有的，它的�
 ## 本地方法栈
 本地方法栈是为JVM运行Native方法准备的空间，它和前面介绍的Java栈的作用类似。
 
-
+## 示例
 
 两个对象的内存图
 
