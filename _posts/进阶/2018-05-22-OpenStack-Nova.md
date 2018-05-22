@@ -64,3 +64,7 @@ nova-compute一般管理虚拟机的生命周期。但是，Nova并不提供虚�
 
 Nova_compute首先会使用Resource Tracker的Claim机制检测主机的可用资源是否能够满足创建虚机的需要？然后通过指定的VirtDriver创建vm。Libvirt提供了api给nova_compute来实现vm的管理。
 Nova_compute每创建迁移删除vm都要更新数据库中的内容，claim机制就是创建VM之前先测试主机的可用资源能否满足创建VM需要，满足就更新数据库，将主机上的可用资源删掉被创建的这部分，如果VM创建失败或者被删除，就将删掉的数据再回复回去。
+
+### 为什么compute不设计为直接访问数据库，而要加conductor
+
+理解的解答是首先为了安全，因为compute主要用于创建虚拟机，一旦被攻击，数据库的信息就可能暴露，其次是解耦之后，就算数据库升级也不需要设计nova-compute，解耦之后系统的健壮性更佳
