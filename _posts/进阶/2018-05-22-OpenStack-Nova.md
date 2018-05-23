@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title:   OpenStack Nova
 date:   2018-05-22 19:15:10
