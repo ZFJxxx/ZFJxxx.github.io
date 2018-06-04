@@ -36,3 +36,11 @@ sleep()来自Thread类，和wait()来自Object类
 sleep(milliseconds)需要指定一个睡眠时间，时间一到会自动唤醒。wait()需要notify唤醒.
 
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/waitsleep.png)
+
+## 进程和线程的区别
+* 进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。
+
+* 线程：同一类线程共享代码和数据空间，每个线程有独立的工作内存和程序计数器(PC)，线程切换开销小。线程间还可以通过共享的主内存来进行值的传递。
+
+* 多进程是指操作系统能同时运行多个任务（程序）。
+* 多线程是指在同一程序中有多个顺序流在执行。
