@@ -3,7 +3,7 @@ layout: post
 title:  "ACID、CAP、BASE分布式理论"
 date:   2018-04-16 22:21:49
 categories: 进阶
-tags: ZooKeeper
+tags: 分布式
 keywords: ZooKeeper
 description: 
 ---
@@ -77,7 +77,7 @@ google spanner 运行在了google cloud上，cloud spanner是全球分布式数�
 强一致性算法
 
     Paxos
-    Ratf(multi - paxos)
+    Raft(multi - paxos)
     ZAB(multi - paxos)
 
 总的来说，BASE理论面向的是大型高可用可扩展的分布式系统，和传统事务的ACID特性是相反的，它完全不同于ACID的强一致性模型，而是提出通过牺牲强一致性来获得可用性，并允许数据在一段时间内是不一致的，但最终达到一致状态。但同时，在实际的分布式场景中，不同业务单元和组件对数据一致性的要求是不同的，因此在具体的分布式系统架构设计过程中，ACID特性与BASE理论往往又会结合在一起使用。
