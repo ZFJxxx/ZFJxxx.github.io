@@ -21,8 +21,8 @@ ps [options] [--help]
 ps -ef 是用标准的格式显示进程
 ```
 UID        PID  PPID  C STIME TTY          TIME      CMD
-root		  1       0   0  06:50  ?            00:00:02  /sbin/init
-root            2      0   0  06:50  ?             00:00:00 [kthreadd]
+root		     1      0   0  06:50  ?          00:00:02  /sbin/init
+root       2      0   0  06:50  ?          00:00:00 [kthreadd]
 ```
 
 ```
