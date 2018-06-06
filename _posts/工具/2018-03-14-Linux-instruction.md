@@ -331,4 +331,5 @@ sz 可以将服务器的文件上传到本地。
 ```
 //rz sz指令安装
 yum install lrzsz
+sz filename
 ```
