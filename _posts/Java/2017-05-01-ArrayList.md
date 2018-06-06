@@ -7,16 +7,15 @@ tags: Java容器
 keywords: Java
 description: 
 ---
-----------------------------------
+
 ## ArrayList
-----------
+
 ArrayList是最常见以及每个Java开发者最熟悉的集合类了，顾名思义，ArrayList就是一个以动态数组形式实现的集合.
 
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/index.jpg)
 
 ArrayList底层以数组实现，允许重复，默认第一次插入元素时创建数组的大小为10，超出限制时会变成1.5倍的容量，每次扩容都底层采用System.arrayCopy()复制到新的数组，初始化时最好能给出数组大小的预估值。
 
-----------
 ## 添加元素
 
 有这么一段代码：
@@ -40,13 +39,10 @@ public boolean add(E e) {
 
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList1.jpg)
 
-
 多说一句，我这么画图有一定的误导性。elementData中存储的应该是堆内存中元素的引用，也就是其地址值，而不是实际的元素。这么画给人一种感觉就是说elementData数组里面存放的就是实际的元素，这是不太严谨的。不过这么画主要是为了方便起见，只要知道这个问题就好了。
 
+## 扩容
 
-----------
-**扩容**
-----------
 我们看一下，构造ArrayList的时候，默认的底层数组大小是10：
 ```
 public ArrayList() {
@@ -88,9 +84,9 @@ public static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]>
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList2.jpg)
 
 
-----------
-**删除元素**
-----------
+
+## 删除元素
+
 接着我们看一下删除的操作。ArrayList支持两种删除方式：
 　1、按照下标删除
 　2、按照元素删除，这会删除ArrayList中与指定要删除的元素匹配的第一个元素
@@ -127,9 +123,9 @@ public static void main(String[] args) {
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList3.jpg)
 
 
-----------
-**插入元素**
-----------
+
+## 插入元素
+
 看一下ArrayList的插入操作，插入操作调用的也是add方法，比如：
 ```
 public static void main(String[] args)　{
@@ -162,9 +158,9 @@ public void add(int index, E element) {
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/ArrayList4.jpg)
 
 
-----------
-**ArrayList的优缺点**
-----------
+
+## ArrayList的优缺点
+
 从上面的几个过程总结一下ArrayList的优缺点。ArrayList的优点如下：
 　1、ArrayList底层以数组实现，是一种随机访问模式，再加上它实现了RandomAccess接口，因此查找也就是get的时候非常快
 　2、ArrayList在顺序添加一个元素的时候非常方便，只是往数组里面添加了一个元素而已
@@ -176,9 +172,8 @@ public void add(int index, E element) {
 因此，ArrayList比较适合顺序添加、随机访问的场景。
 
 
-----------
-**ArrayList和Vector的区别**
-----------
+## ArrayList和Vector的区别
+
 ArrayList是线程非安全的，这很明显，因为ArrayList中所有的方法都不是同步的，在并发下一定会出现线程安全问题。那么我们想要使用ArrayList并且让它线程安全怎么办？一个方法是用Collections.synchronizedList方法把你的ArrayList变成一个线程安全的List，比如：
 ```
 List<String> synchronizedList = Collections.synchronizedList(list);
@@ -196,4 +191,4 @@ int newCapacity = oldCapacity + ((capacityIncrement > 0) ?capacityIncrement : ol
 ```
 
 
-----------
+
