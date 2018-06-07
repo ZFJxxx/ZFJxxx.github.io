@@ -3,7 +3,7 @@ layout: post
 title:   Docker实现原理
 date:   2018-05-05 19:15:10
 categories:  工具
-tags: 分布式
+tags: Docker
 keywords: 
 description: 
 ---
