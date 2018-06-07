@@ -1,6 +1,6 @@
 ---
 layout: post
-title:   Docker的使用
+title:   Docker In Action
 date:   2018-05-06 19:15:10
 categories:  工具
 tags: Docker
@@ -102,6 +102,7 @@ Docker容器类似一个简易的Linux系统环境，以及运行在其中的应
 
 
 **创建新容器**
+
 可以用creat，这样创建出来的容器是停止状态，可用docker start命令启动
 ```
 $ sudo docker creat -it ubuntu:latest
@@ -142,6 +143,7 @@ $ sudo docker rm 243c32535da7
 
 
 **容器互联实现容器通信**
+
 linking会在源和接受容器之间创建一个隧道，接受容器可以看到源容器指定的信息。
 
 比如web容器连到db容器
@@ -150,4 +152,5 @@ $ sudo docker -d -P --name web --link db:db
 ```
 
 ### 3.仓库
+
 类似于github的一个远端库，用于存储镜像。
