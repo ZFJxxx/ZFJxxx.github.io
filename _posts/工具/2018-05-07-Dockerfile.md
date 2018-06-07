@@ -34,7 +34,7 @@ CMD /usr/sbin/ngnix
 #
 #VERSION 0.0.1
 
-From ubutu
+From ubuntu
 MAINTAINER Victor victor@mail.com
 
 RUN apt-get update && apt-get install -y ngnix apache2 openssh-server 
