@@ -23,7 +23,7 @@ ThreadLocal的作用是提供线程内的局部变量，这种变量在线程的
 private ThreadLocal myThreadLocal = new ThreadLocal();
 ```
 
-你实例化了一个ThreadLocal对象。每个线程仅需要实例化一次即可。虽然不同的线程执行同一段代码时，访问同一个ThreadLocal变量，但是每个线程只能看到私有的ThreadLocal实例。所以不同的线程在给ThreadLocal对象设置不同的值时，他们也不能看到彼此的修改。
+你实例化了一个ThreadLocal对象。每个方法仅需要实例化一次即可，虽然不同的线程执行同一段代码时，访问同一个ThreadLocal变量，但是每个线程只能看到私有的ThreadLocal实例。所以不同的线程在给ThreadLocal对象设置不同的值时，他们也不能看到彼此的修改。
 
 一旦创建了一个ThreadLocal对象，你就可以通过以下方式来存储此对象的值：
 ```
