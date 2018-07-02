@@ -55,6 +55,8 @@ class Entry extends WeakReference<ThreadLocal<?>> {
 }
 ```
 
+注意：Entry中没有next字段，所以就不存在链表的情况了。这点和HashMap不同
+
 
 ### 2.ThreadLocalMap
 
@@ -112,21 +114,18 @@ private void set(ThreadLocal<?> key, Object value) {
         rehash();
 }
 ``` 
-* 1.通过ThreadLocal的nextHashCode方法生成hash值。
-``` 
-private static AtomicInteger nextHashCode = new AtomicInteger();
-private static int nextHashCode() {    
- return nextHashCode.getAndAdd(HASH_INCREMENT);
-}
-``` 
-从nextHashCode方法可以看出，ThreadLocal每实例化一次，其hash值就原子增加HASH_INCREMENT。
-* 2.通过 hash & (len -1) 定位到table的位置i，假设table中i位置的元素为f。
-* 3.如果f != null，假设f中的引用为k：
-　如果k和当前ThreadLocal实例一致，则修改value值，返回。
-　如果k为null，说明这个f已经是stale(陈旧的)的元素。调用replaceStaleEntry方法删除table中所有陈旧的元素（即entry的引用为null）并插入新元素，返回。
-　否则通过nextIndex方法找到下一个元素f，继续进行步骤3。
-* 4.如果f == null，则把Entry加入到table的i位置中。
-* 5.通过cleanSomeSlots删除陈旧的元素，如果table中没有元素删除，需判断当前情况下是否要进行扩容。
+
+每个ThreadLocal对象都有一个hash值threadLocalHashCode，每初始化一个ThreadLocal对象，hash值就增加一个固定的大小0x61c88647。
+
+在插入过程中，根据ThreadLocal对象的hash值，定位到table中的位置i，过程如下：
+* 1.如果当前位置是空的，那么正好，就初始化一个Entry对象放在位置i上；
+* 2.不巧，位置i已经有Entry对象了，如果这个Entry对象的key正好是即将设置的key，那么重新设置Entry中的value；
+* 3.很不巧，位置i的Entry对象，和即将设置的key没关系，那么只能找下一个空位置；
+
+这样的话，在get的时候，也会根据ThreadLocal对象的hash值，定位到table中的位置，然后判断该位置Entry对象中的key是否和get的key一致，如果不一致，就判断下一个位置
+
+可以发现，set和get如果冲突严重的话，效率很低，因为ThreadLoalMap是Thread的一个属性，所以即使在自己的代码中控制了设置的元素个数，但还是不能控制其它代码的行为。
+
 
 ## 2.ThreadLocal.get() 实现
 ``` 
@@ -157,20 +156,37 @@ private Entry getEntry(ThreadLocal<?> key) {
 
 * １.如果threadLocals不为null，则通过ThreadLocalMap.getEntry方法找到对应的entry，如果其引用和当前key一致，则直接返回，否则在table剩下的元素中继续匹配。
 * ２.如果threadLocals为null，则通过setInitialValue方法初始化，并返回。
+
+
+## 内存泄露
+
+ThreadLocal可能导致内存泄漏，先看看Entry的实现：
 ``` 
-private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
-	Entry[] tab = table;
-	int len = tab.length;
-	while (e != null) {
-		ThreadLocal<?> k = e.get();
-		if (k == key)
-		        return e;
-		if (k == null)
-		         expungeStaleEntry(i);
-	        else
-		         i = nextIndex(i, len);
-         e = tab[i];
-      }
-      return null;
+static class Entry extends WeakReference<ThreadLocal<?>> {
+    /** The value associated with this ThreadLocal. */
+    Object value;
+
+    Entry(ThreadLocal<?> k, Object v) {
+        super(k);
+        value = v;
+    }
+}
+``` 
+
+通过之前的分析已经知道，当使用ThreadLocal保存一个value时，会在ThreadLocalMap中的数组插入一个Entry对象，按理说key-value都应该以强引用保存在Entry对象中，但在ThreadLocalMap的实现中，key被保存到了WeakReference对象中。
+
+这就导致了一个问题，ThreadLocal在没有外部强引用时，发生GC时会被回收，如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露。
+
+### 如何避免内存泄露
+既然已经发现有内存泄露的隐患，自然有应对的策略，在调用ThreadLocal的get()、set()可能会清除ThreadLocalMap中key为null的Entry对象，这样对应的value就没有GC Roots可达了，下次GC的时候就可以被回收，当然如果调用remove方法，肯定会删除对应的Entry对象。
+
+如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露，所以养成良好的编程习惯十分重要，使用完ThreadLocal之后，记得调用remove方法。
+``` 
+ThreadLocal<String> localName = new ThreadLocal();
+try {
+    localName.set("Freddie");
+    // 其它业务逻辑
+} finally {
+    localName.remove();
 }
 ``` 
