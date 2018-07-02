@@ -11,8 +11,8 @@ description:
 
 ## LinkedList
 
-LinkedList是基于**链表**实现的，是一种**双向链表**。
-LinkedList既然是一种双向链表，必然有一个存储单元，看一下LinkedList的基本存储单元，它是LinkedList中的一个内部类：
+LinkedList是基于**链表**实现的，是一种**双向循环链表**。
+LinkedList既然是一种双向循环链表，必然有一个存储单元，看一下LinkedList的基本存储单元，它是LinkedList中的一个内部类：
 ```
 private static class Entry<E> {
     E element;
@@ -72,11 +72,11 @@ private Entry<E> addBefore(E e, Entry<E> entry) {
 
 header.next和header.previous上图中已经看到了，都是0×00000000，那么假设new出来的这个Entry的地址是0×00000001，继续画图表示：
 
-![这里写图片描述](http://p7lixluhf.bkt.clouddn.com/LinkedList4.jpg)
+![这里写图片描述](http://p7lixluhf.bkt.clouddn.com/LL1.jpg)
 
 add了一个字符串”222″做了什么，假设新new出来的Entry的地址是0×00000002，画图表示：
 
-![这里写图片描述](http://p7lixluhf.bkt.clouddn.com/LinkedList5.jpg)
+![这里写图片描述](http://p7lixluhf.bkt.clouddn.com/LL5.jpg)
 
 就是这样不断插入。
 
