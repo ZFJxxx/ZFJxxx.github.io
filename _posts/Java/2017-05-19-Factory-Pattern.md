@@ -49,8 +49,8 @@ public class banana implements Fruit {
 }
 ```
 
-
 创建一个工厂，生成基于给定信息的实体类的对象:FruitFactory.java
+```
 public class FruitFactory {
     
    //使用 getFruit 方法获取形状类型的对象
@@ -66,8 +66,9 @@ public class FruitFactory {
       return null;
    }
 }
-
+```
 使用该工厂，通过传递类型信息来获取实体类的对象:FactoryPatternDemo.java
+```
 public class FactoryPatternDemo {
  
    public static void main(String[] args) {
@@ -80,7 +81,7 @@ public class FactoryPatternDemo {
       banana.eat();
    }
 }
-
+```
 执行程序，输出结果：
 ```
 i want to eat apple!
