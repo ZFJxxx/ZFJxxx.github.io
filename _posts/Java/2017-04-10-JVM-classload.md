@@ -114,6 +114,7 @@ public class Test{
 现在静态代码块中为b赋值，6；接着程序向下执行，再为其赋值为9.Test类的初始化结束后，类变量b为9. 
 
 ## ClassLoader
+加载过程中的：**通过一个类的全限定名来获取其定义的二进制字节流**，就是由classload来实现的。
 
 程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中的，从而只有class文件被载入到了内存之后，才能被其它class所引用。所以ClassLoader就是用来动态加载class文件到内存当中用的。
 
@@ -121,7 +122,7 @@ JDK中提供了三个ClassLoader，根据层级从高到低为：
 
 * Bootstrap ClassLoader，启动类加载器，是Java类加载层次中最顶层的类加载器.负责加载JDK中的核心类库。
 * Extension ClassLoader，扩展类加载器，负责加载Java的扩展类库,主要加载%JAVA_HOME%\lib\ext目录下的库类。
-* App ClassLoader，系统类加载器，主要加载Classpath指定的库类，一般情况下这是程序中的默认类加载器，也是ClassLoader.getSystemClassLoader() 的返回值。（这里的Classpath默认指的是环境变量中配置的Classpath，但是可以在执行Java命令的时候使用-cp 参数来修改当前程序使用的Classpath）
+* Application ClassLoader，系统类加载器，主要加载Classpath指定的库类，一般情况下这是程序中的默认类加载器，也是ClassLoader.getSystemClassLoader() 的返回值。（这里的Classpath默认指的是环境变量中配置的Classpath，但是可以在执行Java命令的时候使用-cp 参数来修改当前程序使用的Classpath）
 
 JVM加载类的实现方式，我们称为 双亲委托模型：
 
