@@ -16,4 +16,9 @@ description:
 * 3.notify(),notifyall(),wait()都是用来对给定对象进行线程同步的
 * 4.getClass() 返回该对象所属类的信息 
 * 5.finalize() 当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。 
-* 6.toString() 返回该对象的字符串表示。 
+* 6.toString() 返回该对象的字符串表示。
+* 7.clone() 进行对象拷贝 
+
+## GET POST的区别
+
+##
