@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  LeetCode 3. Longest Substring Without Repeating Characters
+title:  LeetCode 3. Longest Substring Without Repeating Characters (Medium)
 date:   2018-04-22 11:15:10
 categories: 算法
 tags: LeetCode
