@@ -36,10 +36,10 @@ class Solution {
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         int max=0;
         int leftBound=0;
-        for (int i=0; i<s.length(); ++i){
+        for (int i=0; i<s.length(); i++){
             Character c = s.charAt(i);
             //窗口左边可能为下一个char，或者不变
-            if (map.containsKey(s.charAt(i))){
+            if (map.containsKey(c){
                 leftBound = Math.max(leftBound,map.get(c)+1);
             }
             map.put(c ,i);
