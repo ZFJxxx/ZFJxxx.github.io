@@ -27,7 +27,7 @@ description:
 * 6.toString() 返回该对象的字符串表示。
 * 7.clone() 进行对象拷贝 
 
-## GET POST的区别
+
 
 ## Serializable 与 transient 关于序列化
 
@@ -124,3 +124,41 @@ GC判断某个对象是否可被回收的依据是，是否有有效的引用指
 * ClassCastException:类型强制转换异常
 * ArithmeticException:算术运算异常
 * IllegalArgumentException：参数不正确
+
+## GET POST的区别
+GET请求的参数都放在URL里，所以参数是直接暴露的；而POST是通过request body 来传递参数的。
+GET 的URL可以人肉手输，POST不能。
+```
+GET 请求可被缓存
+GET 请求保留在浏览器历史记录中
+GET 请求可被收藏为书签
+GET 请求不应在处理敏感数据时使用
+GET 请求有长度限制
+GET 请求只应当用于取回数据
+```
+```
+post 刷新请求会被重新提交
+POST 请求不会被缓存
+POST 请求不会保留在浏览器历史记录中
+POST 不能被收藏为书签
+POST 请求对数据长度没有要求
+```
+POST比GET安全一点点。。但是面对抓包工具还是没用，还是老实用HTTPS吧。
+
+## Http报文
+* 1.Http请求报文
+```
+1.请求行
+2.请求头
+3.请求体
+```
+![enter image description here](http://p7lixluhf.bkt.clouddn.com/http1.jpg）
+
+* 2.Http响应报文
+```
+1.响应行
+2.响应头
+3.响应体
+```
+![enter image description here](http://p7lixluhf.bkt.clouddn.com/http2.jpg）
+## Https
