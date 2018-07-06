@@ -152,7 +152,7 @@ POST比GET安全一点点。。但是面对抓包工具还是没用，还是老�
 2.请求头
 3.请求体
 ```
-![enter image description here](http://p7lixluhf.bkt.clouddn.com/http1.jpg）
+![enter image description here](http://p7lixluhf.bkt.clouddn.com/http1.jpg)
 
 * 2.Http响应报文
 ```
@@ -160,5 +160,5 @@ POST比GET安全一点点。。但是面对抓包工具还是没用，还是老�
 2.响应头
 3.响应体
 ```
-![enter image description here](http://p7lixluhf.bkt.clouddn.com/http2.jpg）
+![enter image description here](http://p7lixluhf.bkt.clouddn.com/http2.jpg)
 ## Https
