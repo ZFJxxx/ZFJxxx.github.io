@@ -27,7 +27,45 @@ description:
 * 6.toString() 返回该对象的字符串表示。
 * 7.clone() 进行对象拷贝 
 
+## 为什么Object类里面会有wait和notify这两个方法
+首先：
+```
+Object obj = newObject();
+synchronized(obj){
+　　　　try{　　
+　　　　　　obj.wait();
+　　　　　　}catch(Exception e){}
+　　　　　　obj.notify();
+　　}
+```
+注意：wait(),notify(),notifyAll()都必须使用在同步中，要对持有监视器(锁)的线程操作。所以要使用在同步中，因为只有同步 才具有锁。调用wait方法时会释放掉锁 
+为什么这些操作线程的方法要定义在object类中呢？
 
+简单说：因为synchronized中的这把锁可以是任意对象，所以任意对象都可以调用wait()和notify()；所以wait和notify属于Object。
+
+专业说：因为这些方法在操作同步线程时，都必须要标识它们操作线程的锁，只有同一个锁上的被等待线程，可以被同一个锁上的notify唤醒，不可以对不同锁中的线程进行唤醒。 
+也就是说，等待和唤醒必须是同一个锁。而锁可以是任意对象，所以可以被任意对象调用的方法是定义在object类中。
+
+## wait()和sleep()的区别
+sleep()来自Thread类，和wait()来自Object类
+
+调用sleep()方法的过程中，线程不会释放对象锁。而 调用 wait()方法线程会释放对象锁。sleep()睡的时候只是抱着锁睡觉，会释放cpu时间片。wait()把时间片和资源的锁就全都释放出去了。
+
+sleep(milliseconds)需要指定一个睡眠时间，时间一到会自动唤醒。wait()需要notify唤醒.
+
+## finalize()方法
+finalize()是在java.lang.Object里定义的，也就是说每一个对象都有这么个方法。 
+GC在销毁对象之前，会调用finalize()方法。完了之后再销毁对象。finalize()可以使该对象重新变成可达状态,从而使它不被回收
+```
+public void finalize(){
+    ft= this;
+}
+```
+
+## 基本类型大小
+![enter image description here](http://p7lixluhf.bkt.clouddn.com/20170928155212130.jpg)
+
+int 范围 -2147483648~2147483647[-2^31~2^31-1]
 
 ## Serializable 与 transient 关于序列化
 
@@ -172,9 +210,9 @@ POST比GET安全一点点。。但是面对抓包工具还是没用，还是老�
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/http2.jpg)
 
 ## 三范式
-* 第一范式：
-* 第二范式：
-* 第三范式：
+* 第一范式：所有属性都是不可分割的原子值
+* 第二范式：要求非主属性都要和码有完全依赖关系
+* 第三范式：任何非主属性不依赖于其它非主属性
 
 ## 读写锁
 * 读锁是共享的，多个用户可以同一时刻读取一个资源
@@ -201,6 +239,7 @@ POST比GET安全一点点。。但是面对抓包工具还是没用，还是老�
 
 ## InnoDB 和 MyISAM
 
+
 ## 数据类型
 * 整数类型：TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT
 
@@ -215,4 +254,4 @@ CHAR存储长度不可变，长度一定的字符串，比如MD5后的密码，�
 TEXT用于存储很大的字符串。
 * 时间类型：DATE
 
-
+## 
