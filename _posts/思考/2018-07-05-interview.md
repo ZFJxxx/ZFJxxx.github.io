@@ -21,6 +21,8 @@ description:
 ## public protected deflut private
 
 ![](http://p7lixluhf.bkt.clouddn.com/public.jpg)
+
+
 注意：defult修饰方法和变量只能被同package的子类使用，protected修饰的方法和变量能被外包的子类使用。
 
 ## Object有哪些公用方法？
