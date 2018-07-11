@@ -18,6 +18,10 @@ description:
 ## 面向对象
 面向对象就是将属性和方法都封装到一个class中；而面向过程是定义一堆属性、方法，在复制的情况下就很难弄清楚。
 
+## public protected deflut private
+
+![](http://p7lixluhf.bkt.clouddn.com/public.jpg)
+
 ## Object有哪些公用方法？
 * 1.equals() 判断的是两个对象是否相等 
 * 2.hashCode() 返回该对象的哈希码值。 
