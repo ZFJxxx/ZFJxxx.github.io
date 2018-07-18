@@ -34,6 +34,13 @@ description:
 * 6.toString() 返回该对象的字符串表示。
 * 7.clone() 进行对象拷贝 
 
+## toString()和String.valueOf()的区别
+当参数为空的时候.toString()方法就会报出空指针异常。
+String.valueOf()：这个方法是静态的，直接通过String调用，在内部就是做了为空的判断的，所以就不会报出空指针异常。
+```
+public static String valueOf(Object obj){return (obj==null) ? "null" : obj.toString()};
+```
+
 ## 为什么Object类里面会有wait和notify这两个方法
 首先：
 ```
