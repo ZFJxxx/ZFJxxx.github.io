@@ -36,6 +36,7 @@ description:
 
 ## toString()和String.valueOf()的区别
 当参数为空的时候.toString()方法就会报出空指针异常。
+
 String.valueOf()：这个方法是静态的，直接通过String调用，在内部就是做了为空的判断的，所以就不会报出空指针异常。
 ```
 public static String valueOf(Object obj){return (obj==null) ? "null" : obj.toString()};
@@ -75,6 +76,26 @@ public void finalize(){
     ft= this;
 }
 ```
+## finally代码块必然执行吗？
+```
+try{              
+    return 5;  
+}catch(Exception e){  
+    e.printStackTrace();  
+}finally{  
+    System.out.println("会执行嘛？");  
+}  
+
+//输出：
+//会执行吗？
+//5
+```
+* 1.不管有没有出现异常，finally块中代码都会执行；
+* 2当try和catch中有return时，finally仍然会执行；
+* 3。finally是在return后面的表达式运算后执行的（此时并没有返回运算后的值，而是先把要返回的值保存起来，管finally中的代码怎么样，返回的值都不会改变，任然是之前保存的值），所以函数返回值是在finally执行前确定的；
+* 4.finally中最好不要包含return，否则程序会提前退出，返回值不是try或catch中保存的返回值。
+* 5.System.exit(0); 退出虚拟机，自然不会执行finally
+* 6.如果程序不执行try语句块，那么就不会执行finally
 
 ## 基本类型大小
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/20170928155212130.jpg)
@@ -180,13 +201,20 @@ Stop The World：从GC Roots进行可达性分析是，为了保持一致性，�
 
 自旋锁避免了线程切换的开销，如果锁占用的时间短，就很好，反正锁被占用的时间长，自旋的线程只会白白消耗处理器资源。
 
+## Error和Exception区别
+* Exception 和 Error 都是继承了 Throwable 类
+* Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。
+* Error 是指在正常情况下，不大可能出现的情况，绝大部分的 Error 都会导致程序（比如 JVM 自身）处于非正常的、不可恢复状态。既然是非正常情况，所以不便于也不需要捕获，常见的比如 OutOfMemoryError 之类，都是 Error 的子类。
+
 ## 常见运行时异常
-* ClassNotFoundException:指定类不存在
+* RuntimeException是一种Unchecked Exception，即表示编译器不会检查程序是否对RuntimeException作了处理，在程序中不必捕获RuntimException类型的异常，也不必在方法体声明抛出RuntimeException类。
 * NullPointerException:空指针异常
 * ArrayIndexOutOfBoundsException:数组下标越界异常
 * ClassCastException:类型强制转换异常
 * ArithmeticException:算术运算异常
 * IllegalArgumentException：参数不正确
+
+ps: 要么在方法体中声明抛出checked Exception，要么使用catch语句捕获checked Exception进行处理，不然不能通过编译。常用的Checked Exception有IOException、ClassNotFoundException等。
 
 ## GET POST的区别
 GET请求的参数都放在URL里，所以参数是直接暴露的；而POST是通过request body 来传递参数的。
