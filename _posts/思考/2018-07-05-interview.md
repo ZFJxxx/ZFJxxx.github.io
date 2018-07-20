@@ -18,12 +18,12 @@ description:
 ## 面向对象
 面向对象就是将属性和方法都封装到一个class中；而面向过程是定义一堆属性、方法，在复杂的情况下就很难弄清楚。
 
-## public protected deflut private
+## public protected default private
 
 ![](http://p7lixluhf.bkt.clouddn.com/public.jpg)
 
 
-注意：defult修饰方法和变量只能被同package的子类使用，protected修饰的方法和变量能被外包的子类使用。
+注意：default修饰方法和变量只能被同package的子类使用，protected修饰的方法和变量能被外包的子类使用。
 
 ## Object有哪些公用方法？
 * 1.equals() 判断的是两个对象是否相等 
@@ -66,7 +66,9 @@ sleep()来自Thread类，和wait()来自Object类
 
 调用sleep()方法的过程中，线程不会释放对象锁。而 调用 wait()方法线程会释放对象锁。sleep()睡的时候只是抱着锁睡觉，会释放cpu时间片。wait()把时间片和资源的锁就全都释放出去了。
 
-sleep(milliseconds)需要指定一个睡眠时间，时间一到会自动唤醒。wait()需要notify唤醒.
+sleep(milliseconds)需要指定一个睡眠时间，时间一到会自动唤醒。
+
+而当调用wait()方法的时候，线程会放弃对象锁，进入等待此对象的等待锁定池，只有针对此对象调用notify()方法后本线程才进入对象锁定池准备
 
 ## finalize()方法
 finalize()是在java.lang.Object里定义的，也就是说每一个对象都有这么个方法。 
@@ -239,8 +241,18 @@ Java SE 1.6为了减少获得锁和释放锁带来的性能消耗，引入了“
 ps: 要么在方法体中声明抛出checked Exception，要么使用catch语句捕获checked Exception进行处理，不然不能通过编译。常用的Checked Exception有IOException、ClassNotFoundException等。
 
 ## 抽象工厂和工厂方法模式的区别
+## Mybatis中#和$的区别
+* #：会进行预编译，用于变量替换.可以防止sql注入等等问题
+* $:实质上是字符串拼接,$方式一般用于传入数据库对象，比如这种group by 字段 ,order by 字段，表名，字段名等没法使用占位符的就需要使用${}
 
-##  forward和redirect区别
+## forward和redirect区别
+* forward是服务器内部的重定向，服务器直接访问目标地址的 url网址，把里面的东西读取出来，但是客户端并不知道，因此用forward的话，客户端浏览器的网址是不会发生变化的。
+* redirect是客户端的重定向，是完全的跳转。即服务器返回的一个url给客户端浏览器,并返回3xx，然后客户端浏览器会重新发送一次请求，到新的url里面，因此浏览器中显示的url网址会发生变化。 
+
+## 301和302的区别
+* 301 redirect: 代表永久性转移(Permanently Moved) 301表示旧地址A的资源已经被永久地移除了（这个资源不可访问了），搜索引擎在抓取新内容的同时也将旧的网址交换为重定向之后的网址；
+* 302 redirect: 代表暂时性转移(Temporarily Moved) 302表示旧地址A的资源还在（仍然可以访问），这个重定向只是临时地从旧地址A跳转到地址B，搜索引擎会抓取新的内容而保存旧的网址。
+
 ## GET POST的区别
 GET请求的参数都放在URL里，所以参数是直接暴露的；而POST是通过request body 来传递参数的。
 GET 的URL可以人肉手输，POST不能。
