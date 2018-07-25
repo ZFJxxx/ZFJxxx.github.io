@@ -75,7 +75,7 @@ SELECT * FROM emp NATURAL JOIN dept
 ![](http://p7lixluhf.bkt.clouddn.com/SQLstudent.png)
 
 Score表
-![](http://p7lixluhf.bkt.clouddn.com/Score.png)
+  ![](http://p7lixluhf.bkt.clouddn.com/Score.png)
 
 ```
 SELECT s.stuid,s.stuname,c.score 
