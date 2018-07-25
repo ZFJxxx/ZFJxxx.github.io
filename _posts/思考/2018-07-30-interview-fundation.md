@@ -58,8 +58,9 @@ POST比GET安全一点点。。但是面对抓包工具还是没用，还是老�
 ```
 ![enter image description here](http://p7lixluhf.bkt.clouddn.com/http2.jpg)
 
+## HTTP1.0与HTTP1.1区别
 
-
+## 一个页面, 一个提交按钮, 如何防止重复提交
 ## Linux查看端口的指令
 ```
 netstat -tunlp|grep 端口号
