@@ -247,6 +247,11 @@ Java SE 1.6为了减少获得锁和释放锁带来的性能消耗，引入了“
 自旋锁避免了线程切换的开销，如果锁占用的时间短，就很好，反正锁被占用的时间长，自旋的线程只会白白消耗处理器资源。
 
 ![](http://p7lixluhf.bkt.clouddn.com/sychronized.PNG)
+
+## ThreadLocal底层实现？有什么用，可以举一个例子吗？
+ThreadLocal底层实现是一个Map结构的表，key是Thread.currentThread（）,而Value则是我们想要保存的对象。
+
+可以在每个线程都拥有一个各自的副本，封装起来不被影响，作用的话，可以做一个类似卖票的系统，每个售票厅（线程）只能出售100张票，不能多不能少
 ## Error和Exception区别
 * Exception 和 Error 都是继承了 Throwable 类
 * Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。
