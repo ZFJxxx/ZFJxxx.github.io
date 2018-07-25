@@ -128,5 +128,5 @@ SELECT * FROM emp WHERE sal>( SELECT MAX(sal) FROM emp WHERE deptno=30);
 查询条件：工资高于30部门所有人工资，其中30部门所有人工资是子查询。高于所有需要使用all关键字。
 ```
 SELECT * FROM emp WHERE sal > ALL(SELECT sal FROM emp WHERE deptno=30)
-``
+```
 子查询作为条件：子查询形式为多行单列（当子查询结果集形式为多行单列时可以使用ALL或ANY关键字）
