@@ -73,6 +73,50 @@ sleep(milliseconds)需要指定一个睡眠时间，时间一到会自动唤醒�
 
 而当调用wait()方法的时候，线程会放弃对象锁，进入等待此对象的等待锁定池，只有针对此对象调用notify()方法后本线程才进入对象锁定池准备
 
+## 实现两个线程相互打印
+```
+    Object o = new Object();
+
+    public static void main(String[] args) {
+        new study().startThread();
+    }
+    public  void startThread() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    synchronized (o) {
+                        System.out.println("B");
+                        o.notify();
+                        try {
+                            o.wait();
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    synchronized (o) {
+                        System.out.println("A");
+                        o.notify();
+                        try {
+                            o.wait();
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+                    }
+                }
+            }
+        }).start();
+    }
+```
 ## 使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？
 * 用final修饰的类不能被继承
 * 用final修饰的方法不可重写
@@ -277,6 +321,7 @@ ThreadLocal底层实现是一个Map结构的表，key是Thread.currentThread（�
 ps: 要么在方法体中声明抛出checked Exception，要么使用catch语句捕获checked Exception进行处理，不然不能通过编译。常用的Checked Exception有IOException、ClassNotFoundException等。
 
 ## 抽象工厂和工厂方法模式的区别
+
 ## Mybatis中#和$的区别
 * #：会进行预编译，用于变量替换.可以防止sql注入等等问题
 * $:实质上是字符串拼接,$方式一般用于传入数据库对象，比如这种group by 字段 ,order by 字段，表名，字段名等没法使用占位符的就需要使用${}
