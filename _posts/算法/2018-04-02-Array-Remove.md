@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  删除或者移动数组中的元素
+title:  Leetcode 删除或者移动数组中的元素
 date:   2018-04-22 11:15:10
 categories: 算法
 tags: LeetCode
@@ -104,7 +104,7 @@ class Solution {
 }
 ```
 
-##LeetCode 80. Remove Duplicates from Sorted Array II
+## LeetCode 80. Remove Duplicates from Sorted Array II
 
 Follow up for “Remove Duplicates”: 
 What if duplicates are allowed at most twice?
