@@ -19,10 +19,6 @@ eg： abcd和bca
 
 ```
 public class Solution {
-     /*
-     * @param A, B: Two string.
-     * @return: the length of the longest common substring.
-     */
     public int longestCommonSubstring(String A, String B) {
         if(A==null || B==null) return 0;
         int max=0;                      //记录最长子串的大小
