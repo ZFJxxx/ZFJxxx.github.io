@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  LeetCode 3. Longest Substring Without Repeating Characters (Medium)
+title:  LeetCode 字符串问题
 date:   2018-04-22 11:15:10
 categories: 算法
 tags: LeetCode
 keywords: LeetCode
 description: 
 ---
-
-Given a string, find the length of the longest substring without repeating characters.
-
+## 3. Longest Substring Without Repeating Characters
+**给你一个字符串，找出其最长不重复子字符串**
+```
 Examples:
 
 Given "abcabcbb", the answer is "abc", which the length is 3.
@@ -17,10 +17,10 @@ Given "abcabcbb", the answer is "abc", which the length is 3.
 Given "bbbbb", the answer is "b", with the length of 1.
 
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
-
-## 解
-
-"滑动窗口" 
+```
+思路
+```
+"滑动窗口" 
 比方说 abcabccc 当你右边扫描到abca的时候你得把第一个a删掉得到bca，
 然后"窗口"继续向右滑动，每当加到一个新char的时候，左边检查有无重复的char，
 然后如果没有重复的就正常添加，
@@ -28,6 +28,7 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 
 最精髓的是 leftBound = Math.max(leftBound,map.get(c)+1); 这一行代码
 这样就不用每次更新新的子串的时候都去刷新HashMap,而是将leftBound移到最新的重复节点处。
+```
 ```
 class Solution {
     public int lengthOfLongestSubstring(String s) {
