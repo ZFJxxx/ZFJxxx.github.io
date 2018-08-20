@@ -1,29 +1,281 @@
 ---
 layout: post
-title:  LeetCode 198.House Robber (Easy)
+title:  LeetCode搜索问题
 date:   2018-07-03 11:15:10
 categories: 算法
 tags: LeetCode
 keywords: LeetCode
 description: 
 ---
-You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, 
-the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
 
-Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+## 17. Letter Combinations of a Phone Number
+**告诉你按了哪些按钮，输出所有可能的输出字符**
+![](http://p7lixluhf.bkt.clouddn.com/200px-Telephone-keypad2.svg.png)
+```
+Example:
 
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+```
+思路
+```
+全排列问题，一般使用DPS。
+```
+```
+class Solution {
+    private static final String[] KEYS = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    
+    public List<String> letterCombinations(String digits) {
+        if (digits == null || digits.length() == 0)
+		    return new ArrayList<String>();
+        List<String> result = new ArrayList<String>();
+    	  DFS(new StringBuilder(), digits, 0, result);
+    	  return result;
+    }
+    
+    private void DFS(StringBuilder s, String digits, int start, List<String> result) {
+        if (start == digits.length()) {
+    		   result.add(s.toString());
+    		   return;
+    	  }
+        String temp = KEYS[(digits.charAt(start) - '0')];
+    	  for (int i = 0; i < temp.length(); i++) {
+            s.append(temp.charAt(i));
+    		    DFS(s, digits, start + 1, result);
+            s.deleteCharAt(s.length() - 1);
+    	  }
+    }
+}
+```
+## 39. Combination Sum
+**给你一个不包含重复元素的集合，每个元素可以多次使用，求所有和等于target的自己**
+```
 Example 1:
 
-Input: [1,2,3,1]
-Output: 4
-Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
-             Total amount you can rob = 1 + 3 = 4.
+Input: candidates = [2,3,6,7], target = 7,
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
 Example 2:
 
-Input: [2,7,9,3,1]
-Output: 12
-Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
-             Total amount you can rob = 2 + 9 + 1 = 12.
+Input: candidates = [2,3,5], target = 8,
+A solution set is:
+[
+  [2,2,2,2],
+  [2,3,3],
+  [3,5]
+]
+```
+思路
+```
+求全排列一般用DFS来解决。
+```
+```
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        if(candidates == null || candidates.length == 0)
+            return new ArrayList<List<Integer>>();
+        Arrays.sort(candidates);
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        DFS(result,candidates, target, 0,new ArrayList<Integer>());
+        return result;
+    }
+    
+    private void DFS(List<List<Integer>> result, int candidates[], int target, int start,ArrayList<Integer> cur){
+        if( target == 0){
+            result.add(new ArrayList<Integer>(cur));
+            return;
+        }else if(target >0){
+            for(int i= start;i<candidates.length;i++ ){
+                if(target >= candidates[i]){
+                    cur.add(candidates[i]);
+                    DFS(result,candidates,target - candidates[i],i,cur);
+                    cur.remove(cur.size()-1);
+                }
+            }
+        }   
+    }
+}
+```
+## 40. Combination Sum II
+**给你一个包含重复元素的集合，每个元素只能使用一次，求所有和为target的子序列**
+```
+Example 1:
 
-你不能同时抢相邻房子中的钱，如何抢劫收益最大？
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+Example 2:
 
+Input: candidates = [2,5,2,1,2], target = 5,
+A solution set is:
+[
+  [1,2,2],
+  [5]
+]
+```
+思路：
+```
+这题和上题的区别是包含重复元素并且每个元素只能使用一次
+
+主要难点在于，子集种可能存在重复的情况。
+
+[1,2,2,2,5]
+
+              1                  2             5   (每一层不能存在重复元素，不然会导致重复的解)
+             / \                / \
+            2   5              2   5
+           / \                / \
+          2   5              2   5
+         / \                / 
+        2   5              5   
+       /
+      5
+```
+```
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        if(candidates == null || candidates.length == 0 || target <0)
+            return new ArrayList<List<Integer>>();
+        Arrays.sort(candidates);
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        DFS(candidates,target,result,0,new ArrayList<Integer>());
+        return result;
+    }
+    
+    private void DFS(int[] candidates,int target, List<List<Integer>> result,int start,ArrayList<Integer> cur){
+        if(target == 0){
+            result.add(new ArrayList<Integer>(cur));
+            return;
+        } else if(target > 0){
+            for(int i = start;i < candidates.length;i++){
+                if(i > start && candidates[i] == candidates[i-1]){         //去重，同一层有重复的结束当前循环
+                    continue;
+                }
+                cur.add(candidates[i]);
+                DFS(candidates,target - candidates[i],result,i+1,cur);     //不可重复使用  i+1
+                cur.remove(cur.size()-1);
+            }
+        }
+    }
+}
+```
+## 79. Word Search
+```
+Example:
+
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+
+Given word = "ABCCED", return true.
+Given word = "SEE", return true.
+Given word = "ABCB", return false.
+```
+思路：
+```
+使用DFS更佳。
+
+注意：因为不能走回头路，但是我们要用一个二维数组来标识这个点走没走过。
+```
+```
+class Solution {
+    static boolean[][] visited;
+    public boolean exist(char[][] board, String word) {
+        visited = new boolean[board.length][board[0].length];   
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[i].length; j++){
+                if(word.charAt(0) == board[i][j] && search(board, word, i, j, 0)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    private boolean search(char[][] board, String word, int i, int j, int index){
+        if(index == word.length())    //找到所有字符
+            return true;
+        
+        if(i >= board.length || i < 0 || j >= board[i].length || j < 0 || board[i][j] != word.charAt(index) || visited[i][j]) //没找到
+            return false;
+        
+        visited[i][j] = true;
+        if(search(board, word, i-1, j, index+1) || 
+           search(board, word, i+1, j, index+1) ||
+           search(board, word, i, j-1, index+1) || 
+           search(board, word, i, j+1, index+1)){           //递归寻找其上下左右
+            return true;
+        }
+        visited[i][j] = false;
+        return false;
+    }
+}
+```
+
+## 200. Number of Islands
+**给你一个二维数组，1代表陆地，2代表水。四周都是水代表是一个小岛，问一共有多少个小岛**
+```
+Example 1:
+
+Input:
+11110
+11010
+11000
+00000
+
+Output: 1
+Example 2:
+
+Input:
+11000
+11000
+00100
+00011
+
+Output: 3
+```
+思路：
+```
+深度优先搜索，先遍历二维数组，找到第一个为1的数据，然后搜素其附近所有为1的陆地，将其全部置为‘0’， count++
+```
+```
+class Solution {
+    public int numIslands(char[][] grid) {
+        if (grid.length == 0) 
+            return 0;
+        int count = 0;
+        for (int i = 0; i < grid.length; i++){
+            for (int j = 0; j < grid[0].length; j++){
+                if (grid[i][j] == '1') {
+                    DFS(grid, i, j);
+                    count++;
+                }
+            }
+        }    
+        return count;
+    }
+
+    private void DFS(char[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != '1') 
+            return;
+        
+        grid[i][j] = '0';
+        
+        DFS(grid, i + 1, j);
+        DFS(grid, i - 1, j);
+        DFS(grid, i, j + 1);
+        DFS(grid, i, j - 1);
+    }
+}
+```
