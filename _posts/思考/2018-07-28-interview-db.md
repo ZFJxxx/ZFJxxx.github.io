@@ -60,6 +60,8 @@ SELECT：InnoDB只会查找版本早于当前事务版本的数据行，这样�
 ```
 例子：
 ![](http://p7lixluhf.bkt.clouddn.com/MVCC.PNG)
+
+
 事务1插入3条数据。
 
 事务2读取表中所有数据。
